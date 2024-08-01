@@ -1,4 +1,4 @@
-const WelcomeSection = () => {
+const WelcomeSection = ({ msg }) => {
   return (
     <section>
       <h1>Welcome to React!</h1>

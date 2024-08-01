@@ -4,11 +4,11 @@ import WelcomeSection from './components/WelcomeSection/WelcomeSection';
 
 const App = () => {
   return (
-    <div>
+    <>
       <Header />
       <WelcomeSection />
       <Footer />
-    </div>
+    </>
   );
 };
 export default App;
