@@ -1,5 +1,4 @@
 const Message = ({ title = 'DefaultUser', text, online }) => {
-  console.log(title);
   return (
     <div>
       <h3>{title}</h3>
