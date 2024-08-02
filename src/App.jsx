@@ -81,7 +81,7 @@ const App = () => {
       {/* {isOnline && <h1>Welcome back!</h1>}
       {isOnline || <h1>Offline</h1>} */}
 
-      {isOnline ? <h1>Welcome back!</h1> : <h1>Offline</h1>}
+      {isOnline ? <h1 className='title'>Welcome back!</h1> : <h1>Offline</h1>}
 
       <Modal>
         <List data={filmsData} title='Movies' />

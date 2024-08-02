@@ -1,0 +1,9 @@
+:root{
+  --bg-green: green;
+}
+
+
+.title{
+  text-align: center;
+  color: red;
+}

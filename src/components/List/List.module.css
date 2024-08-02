@@ -1,0 +1,8 @@
+.wrapper{
+  box-shadow: 0 0 8px 7px teal;
+}
+.title{
+  text-align: center;
+  font-weight: bold;
+  color: green;
+}
