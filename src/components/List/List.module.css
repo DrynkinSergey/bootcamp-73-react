@@ -6,3 +6,11 @@
   font-weight: bold;
   color: green;
 }
+.list{
+  display: flex;
+  flex-direction: column;
+  gap:20px;
+}
+.padding{
+  padding: 20px;
+}
