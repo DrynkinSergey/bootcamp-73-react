@@ -102,6 +102,7 @@ const App = () => {
       {/* {messageData.map(message => (
         <Message key={message.id} title={message.title} text={message.text} online={message.online} />
       ))} */}
+
       <div className={s.wrapper}>
         <div></div>
         <div></div>
