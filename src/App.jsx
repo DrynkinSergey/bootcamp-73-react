@@ -2,7 +2,8 @@ import Header from './components/Header/Header';
 import { List } from './components/List/List';
 import Message from './components/Message/Message';
 import Modal from './components/Modal/Modal';
-
+import Profile from './components/Profile/Profile';
+import userData from './assets/user.json';
 const App = () => {
   const isOnline = true;
   const messageData = [
@@ -94,6 +95,7 @@ const App = () => {
           <button>Cancel</button>
         </div>
       </Modal>
+      <Profile user={userData} />
       {/* {messageData.map(message => (
         <Message key={message.id} title={message.title} text={message.text} online={message.online} />
       ))} */}

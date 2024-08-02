@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import s from './Header.module.css';
 const Header = () => {
   return (
@@ -5,7 +6,7 @@ const Header = () => {
       <h2>Logo</h2>
       <ul className={s.list}>
         <li>Home</li>
-        <li>About</li>
+        <li className={clsx('1', s.hello)}>About</li>
       </ul>
     </header>
   );
