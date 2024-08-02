@@ -4,6 +4,9 @@ import Message from './components/Message/Message';
 import Modal from './components/Modal/Modal';
 import Profile from './components/Profile/Profile';
 import userData from './assets/user.json';
+import users from './assets/users.json';
+import s from './App.module.css';
+import clsx from 'clsx';
 const App = () => {
   const isOnline = true;
   const messageData = [
@@ -99,6 +102,19 @@ const App = () => {
       {/* {messageData.map(message => (
         <Message key={message.id} title={message.title} text={message.text} online={message.online} />
       ))} */}
+      <div className={s.wrapper}>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      {users.map((item, index) => (
+        <div className={clsx(s.item, (index + 1) % 2 === 0 && s.gray)} key={item.id}>
+          {item.name}
+        </div>
+      ))}
     </>
   );
 };
