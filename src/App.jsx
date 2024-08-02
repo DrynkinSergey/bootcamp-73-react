@@ -1,13 +1,10 @@
-import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import { List } from './components/List/List';
 import Message from './components/Message/Message';
+import Modal from './components/Modal/Modal';
 
 const App = () => {
   const isOnline = true;
-  const isLoading = true;
-  const isError = false;
-  const isOpen = true;
   const messageData = [
     {
       title: 'Maria',
@@ -76,25 +73,30 @@ const App = () => {
       title: 'Tablet',
     },
   ];
+
   return (
     <>
       <Header />
+
       {/* {isOnline && <h1>Welcome back!</h1>}
       {isOnline || <h1>Offline</h1>} */}
 
-      {isLoading && <h2>Loading...</h2>}
-      {isError && <h2>Error</h2>}
-      {isOpen && <h2>Open modal</h2>}
       {isOnline ? <h1>Welcome back!</h1> : <h1>Offline</h1>}
 
-      <List data={filmsData} title='Movies' />
-      <List data={goodsData} title='Products' />
+      <Modal>
+        <List data={filmsData} title='Movies' />
+      </Modal>
 
+      <Modal title='Products modal'>
+        <List data={goodsData} title='Products' />
+        <div>
+          <button>OK</button>
+          <button>Cancel</button>
+        </div>
+      </Modal>
       {/* {messageData.map(message => (
         <Message key={message.id} title={message.title} text={message.text} online={message.online} />
       ))} */}
-
-      {/* <Footer /> */}
     </>
   );
 };
