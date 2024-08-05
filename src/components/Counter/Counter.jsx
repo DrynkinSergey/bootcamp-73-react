@@ -1,31 +1,49 @@
+import { useState } from 'react';
 import s from './Counter.module.css';
 
 export const Counter = () => {
+  const [counter, setCounter] = useState(0);
+
+  // useState under the hood
+  // const setMyCounter = initialValue => {
+  //   let value = initialValue;
+  //   const changeValue = newValue => {
+  //     value = newValue;
+  //   };
+  //   return [value, changeValue];
+  // };
+  console.log('Render');
+
   const handleMinusClick = () => {
-    // e.target.innerHTML = 'CLICK BTN';
-    // console.log({ x: e.pageX, y: e.pageY });
-    console.log('Welcome!');
+    // if (counter < 1) return;
+
+    setCounter(counter - 1);
   };
 
-  const handleResetClick = (event, name) => {
-    console.log(`Hello, ${name}`);
-    console.log(event);
+  const handleResetClick = () => {
+    setCounter(0);
+  };
+
+  const handlePlusClick = () => {
+    // if (counter === 5) {
+    //   return setCounter(0);
+    // }
+    setCounter(counter + 1);
   };
 
   return (
     <div className={s.flexContainer}>
       <div className={s.wrapper}>
-        <h1>{1}</h1>
-
+        <h1>{counter}</h1>
         <input />
         <div className={s.flex}>
           <button onClick={handleMinusClick} className='btn'>
             minus
           </button>
-          <button onClick={e => handleResetClick(e, 'Alex')} className='btn'>
+          <button onClick={handleResetClick} className='btn'>
             reset
           </button>
-          <button onClick={() => console.log('Hello, user!')} className='btn'>
+          <button onClick={handlePlusClick} className='btn'>
             plus
           </button>
         </div>
