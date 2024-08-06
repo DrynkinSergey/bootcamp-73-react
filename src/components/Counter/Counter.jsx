@@ -2,9 +2,12 @@ import { useEffect, useState } from 'react';
 import s from './Counter.module.css';
 
 export const Counter = () => {
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(() => +window.localStorage.getItem('counter') || 1);
   const [step, setStep] = useState(1);
 
+  useEffect(() => {
+    window.localStorage.setItem('counter', counter);
+  }, [counter]);
   // Виконається лише один раз!
   useEffect(() => {
     console.log('Component was mount');
@@ -15,10 +18,6 @@ export const Counter = () => {
     console.log('Counter was updated! :', counter);
     if (counter === 5) {
       console.log('Твій лічильник вже дорівнює 5. Продовжуй далі!');
-    }
-    if (counter === 10) {
-      console.log('Не так швидко!');
-      setCounter(0);
     }
   }, [counter]);
 
