@@ -1,20 +1,38 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import s from './Counter.module.css';
 
 export const Counter = () => {
   const [counter, setCounter] = useState(0);
   const [step, setStep] = useState(1);
-  // useState under the hood
-  // const setMyCounter = initialValue => {
-  //   let value = initialValue;
-  //   const changeValue = newValue => {
-  //     value = newValue;
-  //   };
-  //   return [value, changeValue];
-  // };
+
+  // Виконається лише один раз!
+  useEffect(() => {
+    console.log('Component was mount');
+  }, []);
+
+  // Виконається ПЕРШИЙ РАЗ а також всі наступні, коли міняяється Сounter!
+  useEffect(() => {
+    console.log('Counter was updated! :', counter);
+    if (counter === 5) {
+      console.log('Твій лічильник вже дорівнює 5. Продовжуй далі!');
+    }
+    if (counter === 10) {
+      console.log('Не так швидко!');
+      setCounter(0);
+    }
+  }, [counter]);
+
+  // Виконається ПЕРШИЙ РАЗ а також всі настпні, коли міняється Step!
+  useEffect(() => {
+    console.log('Step was updated! :', step);
+  }, [step]);
+
+  // Може бути не одна залежність в массиві!
+  useEffect(() => {
+    console.log('Step or Counter was updated!');
+  }, [step, counter]);
 
   const handleMinusClick = () => {
-    // if (counter < 1) return;
     setCounter(prev => prev - step);
   };
 
