@@ -16,7 +16,16 @@ const Modal = ({ onClose, children, title = 'Default modal' }) => {
     };
     document.addEventListener('keydown', handlePressKey);
 
+    const intervalId = setInterval(() => {
+      console.log(new Date().toLocaleTimeString());
+    }, 1000);
+    const timeoutId = setTimeout(() => {
+      console.log('Timeout');
+    }, 3000);
+
     return () => {
+      clearInterval(intervalId);
+      clearTimeout(timeoutId);
       document.removeEventListener('keydown', handlePressKey);
       console.log('Unmount modal');
     };
