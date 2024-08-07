@@ -1,9 +1,7 @@
-import Todolist from './components/Todolist/Todolist';
-
 const App = () => {
   return (
     <>
-      <Todolist />
+      <h1>Forms</h1>
     </>
   );
 };
