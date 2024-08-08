@@ -4,14 +4,16 @@ const Form = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [age, setAge] = useState('');
   console.log('Rerender');
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log({ username, email, password });
+    console.log({ username, email, password, age });
     setUsername('');
     setEmail('');
     setPassword('');
+    setAge('');
   };
   return (
     <div className={s.formWrapper}>
@@ -46,6 +48,17 @@ const Form = () => {
             className={s.input}
             type='password'
             name='password'
+          />
+        </label>
+        <label className={s.label}>
+          <span>Age:</span>
+          <input
+            onChange={e => setAge(e.target.value)}
+            value={age}
+            placeholder='Enter age...'
+            className={s.input}
+            type='numbers'
+            name='age'
           />
         </label>
         <button className={s.btn}>Login</button>

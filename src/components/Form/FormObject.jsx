@@ -1,0 +1,155 @@
+import { useState } from 'react';
+import s from './Form.module.css';
+const INITIAL_STATE = {
+  username: '',
+  email: '',
+  password: '',
+  age: '',
+  gender: 'male',
+  country: '',
+  about: '',
+  agree: true,
+};
+
+const FormObject = () => {
+  const [formData, setFormData] = useState(INITIAL_STATE);
+
+  // const handleChangeUsername = e => {
+  //   setFormData({ ...formData, username: e.target.value });
+  // };
+  // const handleChangeEmail = e => {
+  //   setFormData({ ...formData, email: e.target.value });
+  // };
+  // const handleChangePassword = e => {
+  //   setFormData({ ...formData, password: e.target.value });
+  // };
+  const handleChangeInput = e => {
+    const { name, value, type } = e.target; //
+
+    if (type === 'checkbox') {
+      return setFormData({ ...formData, [name]: !formData[name] }); // agree: !data.agree -> agree: !true
+    }
+
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const onSubmit = e => {
+    e.preventDefault();
+    console.log(formData);
+    setFormData(INITIAL_STATE);
+  };
+  return (
+    <div className={s.formWrapper}>
+      <form onSubmit={onSubmit} className={s.form}>
+        <label className={s.label}>
+          <span>Name:</span>
+          <input
+            onChange={handleChangeInput}
+            value={formData.username}
+            placeholder='Enter name...'
+            className={s.input}
+            name='username'
+          />
+        </label>
+        <label className={s.label}>
+          <span>Email:</span>
+
+          <input
+            value={formData.email}
+            onChange={handleChangeInput}
+            placeholder='Enter email...'
+            className={s.input}
+            name='email'
+          />
+        </label>
+        <label className={s.label}>
+          <span>Password:</span>
+          <input
+            onChange={handleChangeInput}
+            placeholder='Enter password...'
+            value={formData.password}
+            className={s.input}
+            type='password'
+            name='password'
+          />
+        </label>
+        <label className={s.label}>
+          <span>Age:</span>
+          <input
+            onChange={handleChangeInput}
+            placeholder='Enter age...'
+            value={formData.age}
+            className={s.input}
+            type='number'
+            name='age'
+          />
+        </label>
+        <label className={s.label}>
+          <span>Country:</span>
+          <select name='country' className={s.input} onChange={handleChangeInput} value={formData.country}>
+            <option disabled value=''>
+              Choose your country...
+            </option>
+            <option value='Ukraine'>Ukraine</option>
+            <option value='USA'>USA</option>
+            <option value='Canada'>Canada</option>
+          </select>
+        </label>
+        <label>
+          <input
+            onChange={handleChangeInput}
+            checked={formData.gender === 'male'}
+            type='radio'
+            name='gender'
+            value='male'
+          />
+          <span>Male</span>
+        </label>
+
+        <label>
+          <input
+            onChange={handleChangeInput}
+            checked={formData.gender === 'female'}
+            type='radio'
+            name='gender'
+            value='female'
+          />
+          <span>Female</span>
+        </label>
+        <label>
+          <input
+            onChange={handleChangeInput}
+            checked={formData.gender === 'other'}
+            type='radio'
+            name='gender'
+            value='other'
+          />
+          <span>Other</span>
+        </label>
+        <label className={s.label}>
+          <span>About me:</span>
+          <textarea
+            onChange={handleChangeInput}
+            placeholder='Enter more info about me...'
+            value={formData.about}
+            className={s.input}
+            name='about'
+          />
+        </label>
+        <label>
+          <input
+            onChange={handleChangeInput}
+            checked={formData.agree}
+            className={s.input}
+            type='checkbox'
+            name='agree'
+          />
+          <span> I confirm rules!</span>
+        </label>
+
+        <button className={s.btn}>Login</button>
+      </form>
+    </div>
+  );
+};
+export default FormObject;
