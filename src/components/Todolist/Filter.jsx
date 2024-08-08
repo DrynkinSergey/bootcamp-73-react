@@ -1,10 +1,16 @@
 import s from './Todolist.module.css';
-const Filter = () => {
+const Filter = ({ setSortType }) => {
   return (
     <section className={s.filter}>
-      <button className={s.filterBtn}>All</button>
-      <button className={s.filterBtn}>Active</button>
-      <button className={s.filterBtn}>Completed</button>
+      <button onClick={() => setSortType('all')} className={s.filterBtn}>
+        All
+      </button>
+      <button onClick={() => setSortType('active')} className={s.filterBtn}>
+        Active
+      </button>
+      <button onClick={() => setSortType('completed')} className={s.filterBtn}>
+        Completed
+      </button>
     </section>
   );
 };

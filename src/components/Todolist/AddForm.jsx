@@ -2,14 +2,16 @@ import { useState } from 'react';
 import s from './Todolist.module.css';
 const AddForm = ({ handleAddTodo }) => {
   const [value, setValue] = useState('');
-
+  const handleSubmit = e => {
+    e.preventDefault();
+    handleAddTodo(value);
+    setValue('');
+  };
   return (
-    <div className={s.addForm}>
+    <form onSubmit={handleSubmit} className={s.addForm}>
       <input value={value} onChange={e => setValue(e.target.value)} className={s.input} type='text' />
-      <button onClick={() => handleAddTodo(value)} className={s.btn}>
-        Add todo
-      </button>
-    </div>
+      <button className={s.btn}>Add todo</button>
+    </form>
   );
 };
 export default AddForm;
