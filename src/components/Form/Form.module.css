@@ -39,3 +39,19 @@
   }
 
 }
+.inputPassword{
+  composes: input;
+  display: flex;
+  align-items: center;
+  input{
+    border: none;
+    outline: none;
+  }
+  & button{
+    background-color: transparent;
+    border: none;
+  }
+}
+.icon{
+  cursor: pointer;
+}

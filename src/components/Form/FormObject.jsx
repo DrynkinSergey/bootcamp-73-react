@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import s from './Form.module.css';
+import PasswordInput from './PasswordInput';
 const INITIAL_STATE = {
   username: '',
   email: '',
@@ -62,17 +63,21 @@ const FormObject = () => {
             name='email'
           />
         </label>
-        <label className={s.label}>
-          <span>Password:</span>
-          <input
-            onChange={handleChangeInput}
-            placeholder='Enter password...'
-            value={formData.password}
-            className={s.input}
-            type='password'
-            name='password'
-          />
-        </label>
+        <PasswordInput
+          label='Password:'
+          name='password'
+          onChange={handleChangeInput}
+          value={formData.password}
+          type='password'
+        />
+        <PasswordInput
+          label='Confirm pass:'
+          name='confirm'
+          onChange={handleChangeInput}
+          value={formData.confirm}
+          type='password'
+        />
+
         <label className={s.label}>
           <span>Age:</span>
           <input
