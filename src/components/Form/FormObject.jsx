@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import s from './Form.module.css';
 import PasswordInput from './PasswordInput';
+import CustomInput from './CustomInput';
 const INITIAL_STATE = {
   username: '',
   email: '',
@@ -42,52 +43,14 @@ const FormObject = () => {
   return (
     <div className={s.formWrapper}>
       <form onSubmit={onSubmit} className={s.form}>
-        <label className={s.label}>
-          <span>Name:</span>
-          <input
-            onChange={handleChangeInput}
-            value={formData.username}
-            placeholder='Enter name...'
-            className={s.input}
-            name='username'
-          />
-        </label>
-        <label className={s.label}>
-          <span>Email:</span>
-
-          <input
-            value={formData.email}
-            onChange={handleChangeInput}
-            placeholder='Enter email...'
-            className={s.input}
-            name='email'
-          />
-        </label>
-        <PasswordInput
-          label='Password:'
-          name='password'
-          onChange={handleChangeInput}
-          value={formData.password}
-          type='password'
-        />
-        <PasswordInput
-          label='Confirm pass:'
-          name='confirm'
-          onChange={handleChangeInput}
-          value={formData.confirm}
-          type='password'
-        />
+        <CustomInput label='Name:' name='username' placeholder='Enter name...' onChange={handleChangeInput} value={formData.username} />
+        <CustomInput label='Email:' name='email' placeholder='Enter email...' onChange={handleChangeInput} value={formData.email} />
+        <PasswordInput label='Password:' name='password' onChange={handleChangeInput} value={formData.password} type='password' />
+        <PasswordInput label='Confirm pass:' name='confirm' onChange={handleChangeInput} value={formData.confirm} type='password' />
 
         <label className={s.label}>
           <span>Age:</span>
-          <input
-            onChange={handleChangeInput}
-            placeholder='Enter age...'
-            value={formData.age}
-            className={s.input}
-            type='number'
-            name='age'
-          />
+          <input onChange={handleChangeInput} placeholder='Enter age...' value={formData.age} className={s.input} type='number' name='age' />
         </label>
         <label className={s.label}>
           <span>Country:</span>
@@ -101,54 +64,24 @@ const FormObject = () => {
           </select>
         </label>
         <label>
-          <input
-            onChange={handleChangeInput}
-            checked={formData.gender === 'male'}
-            type='radio'
-            name='gender'
-            value='male'
-          />
+          <input onChange={handleChangeInput} checked={formData.gender === 'male'} type='radio' name='gender' value='male' />
           <span>Male</span>
         </label>
 
         <label>
-          <input
-            onChange={handleChangeInput}
-            checked={formData.gender === 'female'}
-            type='radio'
-            name='gender'
-            value='female'
-          />
+          <input onChange={handleChangeInput} checked={formData.gender === 'female'} type='radio' name='gender' value='female' />
           <span>Female</span>
         </label>
         <label>
-          <input
-            onChange={handleChangeInput}
-            checked={formData.gender === 'other'}
-            type='radio'
-            name='gender'
-            value='other'
-          />
+          <input onChange={handleChangeInput} checked={formData.gender === 'other'} type='radio' name='gender' value='other' />
           <span>Other</span>
         </label>
         <label className={s.label}>
           <span>About me:</span>
-          <textarea
-            onChange={handleChangeInput}
-            placeholder='Enter more info about me...'
-            value={formData.about}
-            className={s.input}
-            name='about'
-          />
+          <textarea onChange={handleChangeInput} placeholder='Enter more info about me...' value={formData.about} className={s.input} name='about' />
         </label>
         <label>
-          <input
-            onChange={handleChangeInput}
-            checked={formData.agree}
-            className={s.input}
-            type='checkbox'
-            name='agree'
-          />
+          <input onChange={handleChangeInput} checked={formData.agree} className={s.input} type='checkbox' name='agree' />
           <span> I confirm rules!</span>
         </label>
 
