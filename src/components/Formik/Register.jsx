@@ -1,6 +1,9 @@
-import { Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import s from './Register.module.css';
 import { nanoid } from 'nanoid';
+
+import * as Yup from 'yup';
+
 const Register = () => {
   // 1. Встановити Formik
   // 2. Створити обгортку <Formik></Formik>
@@ -14,25 +17,35 @@ const Register = () => {
 
   const initialValues = { name: '', email: '', password: '', agree: '', gender: '', country: '', about: '' };
   const handleSubmit = (values, options) => {
-    console.log({ ...values, id: crypto.randomUUID() });
+    console.log(values);
     options.resetForm();
   };
 
+  const registerSchema = Yup.object({
+    name: Yup.string().min(3, 'Не менше ніж 3 символи!').max(10, 'Не більше ніж 10 символів!').required("Це поле обов'язкове!"),
+    email: Yup.string().required("Це поле обов'язкове!").email('Це не емейл!'),
+    password: Yup.string().required("Це поле обов'язкове!").min(7).max(22),
+    country: Yup.string().required().oneOf(['Brazil', 'Ukraine', 'Comboja']),
+  });
+
   return (
     <div className={s.formWrapper}>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={registerSchema}>
         <Form className={s.form}>
           <label>
             <span>Name:</span>
             <Field type='text' name='name' />
+            <ErrorMessage className={s.error} name='name' component='div' />
           </label>
           <label>
             <span>Email:</span>
             <Field type='email' name='email' />
+            <ErrorMessage className={s.error} name='email' component='div' />
           </label>
           <label>
             <span>Password:</span>
             <Field type='password' name='password' />
+            <ErrorMessage className={s.error} name='password' component='div' />
           </label>
           <label>
             <span>About:</span>
@@ -46,6 +59,7 @@ const Register = () => {
               <option value='Brazil'>Brazil</option>
               <option value='Comboja'>Comboja</option>
             </Field>
+            <ErrorMessage className={s.error} name='country' component='div' />
           </label>
           <label className={s.flex}>
             <Field type='radio' name='gender' value='male' />
