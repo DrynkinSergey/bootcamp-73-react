@@ -11,6 +11,7 @@
   gap:10px;
   flex-direction: column;
   & label{
+    position: relative;
     display: flex;
     flex-direction: column;
     gap:10px;
@@ -35,4 +36,16 @@
 .error{
   font-size: 12px;
   color:red;
+  position: absolute;
+  top: 10px;
+  right: 0;
+}
+.valid{
+  border: 3px solid green;
+}
+
+.invalid{
+
+  border: 3px solid red;
+
 }
