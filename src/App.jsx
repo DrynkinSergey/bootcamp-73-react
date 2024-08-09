@@ -1,9 +1,9 @@
-import Register from './components/Formik/Register';
+import { Posts } from './components/Posts/Posts';
 
 const App = () => {
   return (
     <>
-      <Register />
+      <Posts />
     </>
   );
 };
