@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "clsx": "^2.1.1",
+    "formik": "^2.4.6",
     "lucide-react": "^0.420.0",
     "modern-normalize": "^2.0.0",
     "nanoid": "^5.0.7",

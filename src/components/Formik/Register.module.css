@@ -1,0 +1,34 @@
+.formWrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.form{
+  padding: 40px;
+  box-shadow: 0 0 10px 10px lightskyblue;
+  display: flex;
+  gap:10px;
+  flex-direction: column;
+  & label{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+  }
+}
+.btns{
+  display: flex;
+  flex-direction: column;
+  gap:5px;
+  justify-content: center;
+  & button{
+    background-color: teal;
+    color:white;
+    padding: 10px;
+    
+  }
+}
+.flex{
+  display: flex;
+  flex-direction: row !important; 
+}
