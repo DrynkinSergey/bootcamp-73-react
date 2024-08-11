@@ -1,11 +1,5 @@
-import { Posts } from './components/Posts/Posts';
-
 const App = () => {
-  return (
-    <>
-      <Posts />
-    </>
-  );
+  return <></>;
 };
 
 export default App;
