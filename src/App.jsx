@@ -1,6 +1,6 @@
-import Articles from './components/Articles/Articles';
+import Counter from './components/Counter/Counter';
 
 const App = () => {
-  return <Articles />;
+  return <Counter />;
 };
 export default App;
