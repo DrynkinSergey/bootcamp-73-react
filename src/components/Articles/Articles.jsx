@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
-import List from './List';
+import { List } from './List';
 import SearchBar from './SearchBar';
 import { useState } from 'react';
 import { fetchArticles } from '../../services/api';
 import { Loader } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
@@ -24,7 +25,7 @@ const Articles = () => {
         setIsLoading(true);
 
         setIsError(false);
-        const data = await fetchArticles(query, page);
+        const data = await fetchArticles({ query, page });
         setArticles(prev => [...prev, ...data.hits]);
       } catch (error) {
         setIsError(true);
@@ -33,14 +34,26 @@ const Articles = () => {
         setIsLoading(false);
       }
     };
-    fetchData();
+
+    toast.promise(fetchData(), {
+      loading: 'Loading',
+      success: 'Got the data',
+      error: 'Error when fetching',
+    });
   }, [page, query]);
+
   return (
     <div className='bg-gray-200 min-h-screen relative pb-10'>
       <SearchBar handleChangeQuery={handleChangeQuery} />
       <List articles={articles} />
       <button onClick={() => setPage(prev => prev + 1)} className='px-4 py-2 bg-teal-500 text-white font-bold mx-auto block'>
-        Load more
+        {isLoading ? (
+          <span className='animate-spin'>
+            <Loader />
+          </span>
+        ) : (
+          'Load more'
+        )}
       </button>
       {isError && <h2 className='text-red-500 text-center text-2xl'>Something went wrong!</h2>}
       {isLoading && (
