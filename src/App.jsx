@@ -1,14 +1,20 @@
-import { createContext, useState } from 'react';
-import UseContextExample from './components/useContextExample/UseContextExample';
-
-export const myContext = createContext();
+import { useContext } from 'react';
+import Todolist from './components/Todolist/Todolist';
+import Header from './components/Header/Header';
+import { authContext } from './context/AuthProvider';
+import Login from './components/Login';
 
 const App = () => {
-  const [auto, setAuto] = useState('Audi');
+  const { isLoggedIn } = useContext(authContext);
+  if (!isLoggedIn) {
+    return <Login />;
+  }
+
   return (
-    <myContext.Provider value={{ model: 'RS6', engine: 5.0 }}>
-      <UseContextExample auto={auto} />;
-    </myContext.Provider>
+    <>
+      <Header />
+      <Todolist />
+    </>
   );
 };
 export default App;
