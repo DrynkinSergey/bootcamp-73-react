@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import s from './Modal.module.css';
 const Modal = ({ onClose, children, title = 'Default modal' }) => {
   const handleBackdropClick = e => {
@@ -7,18 +7,29 @@ const Modal = ({ onClose, children, title = 'Default modal' }) => {
     }
   };
 
-  useEffect(() => {
-    const handlePressKey = e => {
+  const handlePressKey = useCallback(
+    e => {
       if (e.key === 'Escape') {
         onClose();
       }
-    };
-    document.addEventListener('keydown', handlePressKey);
+    },
+    [onClose]
+  );
+  // xd10r1
+  // x10r01
+  // x10r01
+  // x10r01
+  // x10r01
+  // x10r01
+  // x10r01
+  // x10r01
 
+  useEffect(() => {
+    document.addEventListener('keydown', handlePressKey);
     return () => {
       document.removeEventListener('keydown', handlePressKey);
     };
-  }, [onClose]);
+  }, [handlePressKey]);
 
   return (
     <section onClick={handleBackdropClick} className={s.wrapper}>

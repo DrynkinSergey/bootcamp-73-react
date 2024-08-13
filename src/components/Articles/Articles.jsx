@@ -23,7 +23,6 @@ const Articles = () => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-
         setIsError(false);
         const data = await fetchArticles({ query, page });
         setArticles(prev => [...prev, ...data.hits]);
