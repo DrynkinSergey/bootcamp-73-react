@@ -1,9 +1,12 @@
-:root{
-  --bg-green: green;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+html{
+  font-size: 24px;
 }
+.activeLinkHeader{
+  color:black;
 
-
-.title{
-  text-align: center;
-  color: red;
 }

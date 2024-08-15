@@ -9,5 +9,6 @@
 .list{
   display: flex;
   gap:20px;
+  align-items: center;
   list-style: none;
 }
