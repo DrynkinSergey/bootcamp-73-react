@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react';
-import { NavLink, Outlet, useParams } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { Link, NavLink, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { fetchUserById } from '../services/api';
 
 const UserPage = () => {
   const { userId } = useParams();
-  console.log(userId);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const goBackRef = useRef(location.state ?? '/users');
+  console.log(location);
   const [user, setUser] = useState();
   // Запуститься тільки після рендеру розмітки
   useEffect(() => {
@@ -17,6 +20,8 @@ const UserPage = () => {
 
   return (
     <div>
+      <button onClick={() => navigate(goBackRef.current)}>Go back</button>
+      <Link to={goBackRef.current}>Go back link</Link>
       <img src={user.image} />
       <h2>
         {user.lastName} {user.firstName}

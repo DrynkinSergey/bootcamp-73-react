@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { fetchUsers } from '../services/api';
 import List from '../components/List';
 import SearchBar from '../components/SearchBar';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -10,9 +10,14 @@ const Users = () => {
   // searchParams - об`єкт параметрів юрл. Містить методи set, get, delete
   // setSearchParams - функція для запису нових параметрів в юрл
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  console.log(location);
 
   // Отримання квері з юрл параметрів через метод get. Може повернути нам null, тому юзаємо ?? і встановлюємо строку пусту
   const query = searchParams.get('query') ?? '';
+  // const selected = searchParams.get('selected') ?? '';
+  // console.log(selected, typeof selected);
+
   useEffect(() => {
     const fetchData = async () => {
       try {

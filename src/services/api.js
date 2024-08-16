@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const fetchUsers = async () => {
-  const { data } = await axios.get('https://dummyjson.com/users');
+  const { data } = await axios.get('https://dummyjson.com/users?limit=200');
   return data.users;
 };
 export const fetchUserById = async userId => {
