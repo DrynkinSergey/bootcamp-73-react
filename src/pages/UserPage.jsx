@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { fetchUserById } from '../services/api';
 
@@ -40,7 +40,9 @@ const UserPage = () => {
           <NavLink to='posts'>Posts</NavLink>
         </li>
       </ul>
-      <Outlet />
+      <Suspense fallback={<h2>Loading 2 suspense</h2>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { NavLink, Outlet, useParams } from 'react-router-dom';
 import { fetchPostsByUserId } from '../../services/api';
 
@@ -22,7 +22,9 @@ const Posts = () => {
           </li>
         ))}
       </ul>
-      <Outlet />
+      <Suspense fallback={<h1>Loading 3 suspense</h1>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
