@@ -1,10 +1,19 @@
+import { useDispatch } from 'react-redux';
 import s from './TodoList.module.css';
+import { changeFilter } from '../../redux/todolist/actions';
 const Filter = () => {
+  const dispatch = useDispatch();
   return (
     <section className={s.filter}>
-      <button className={s.filterBtn}>All</button>
-      <button className={s.filterBtn}>Active</button>
-      <button className={s.filterBtn}>Completed</button>
+      <button onClick={() => dispatch(changeFilter('all'))} className={s.filterBtn}>
+        All
+      </button>
+      <button onClick={() => dispatch(changeFilter('active'))} className={s.filterBtn}>
+        Active
+      </button>
+      <button onClick={() => dispatch(changeFilter('completed'))} className={s.filterBtn}>
+        Completed
+      </button>
     </section>
   );
 };
