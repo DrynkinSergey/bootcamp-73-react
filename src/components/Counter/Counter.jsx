@@ -1,21 +1,24 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { selectCounter, selectStep } from '../../redux/counter/selectors';
+import { changeStep, decrement, increment, reset } from '../../redux/counter/actions';
 
 const Counter = () => {
-  const counter = useSelector(state => state.counter.counter);
-  const step = useSelector(state => state.counter.step);
+  const counter = useSelector(selectCounter);
+  const step = useSelector(selectStep);
   const dispatch = useDispatch();
 
   const handleIncrement = () => {
-    dispatch({ type: 'INCREMENT' });
+    dispatch(increment());
   };
   const handleDecrement = () => {
-    dispatch({ type: 'DECREMENT' });
+    dispatch(decrement());
   };
   const handleChangeStep = e => {
-    dispatch({ type: 'CHANGE_STEP', payload: +e.target.value });
+    dispatch(changeStep(+e.target.value));
   };
-  const reset = () => {
-    dispatch({ type: 'RESET' });
+
+  const resetState = () => {
+    dispatch(reset());
   };
 
   return (
@@ -30,7 +33,7 @@ const Counter = () => {
         <button className='px-4 py-2 bg-teal-500 text-white font-bold' onClick={handleIncrement}>
           Increment
         </button>
-        <button className='px-4 py-2 bg-teal-500 text-white font-bold' onClick={reset}>
+        <button className='px-4 py-2 bg-teal-500 text-white font-bold' onClick={resetState}>
           RESET
         </button>
       </div>
