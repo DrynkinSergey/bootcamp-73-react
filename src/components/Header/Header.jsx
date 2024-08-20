@@ -14,16 +14,6 @@ const Header = () => {
             Home
           </NavLink>
         </li>
-        <li>
-          <NavLink className={buildLinkClass} to='/about'>
-            About
-          </NavLink>
-        </li>
-        <li>
-          <NavLink className={buildLinkClass} to='/users'>
-            Users
-          </NavLink>
-        </li>
       </ul>
     </header>
   );
