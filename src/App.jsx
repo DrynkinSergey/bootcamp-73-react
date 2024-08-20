@@ -5,8 +5,8 @@ const App = () => {
   return (
     <div>
       {/* <h1>Redux</h1> */}
-      {/* <Todolist /> */}
-      <Counter />
+      <Todolist />
+      {/* <Counter /> */}
     </div>
   );
 };

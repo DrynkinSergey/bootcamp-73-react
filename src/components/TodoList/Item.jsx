@@ -1,7 +1,7 @@
 import { OctagonX } from 'lucide-react';
 import s from './TodoList.module.css';
 import { useDispatch } from 'react-redux';
-import { deleteTodo } from '../../redux/todolist/actions';
+import { deleteTodo } from '../../redux/todolist/slice';
 const Item = ({ todo }) => {
   const dispatch = useDispatch();
   return (

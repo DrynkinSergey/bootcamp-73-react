@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import s from './TodoList.module.css';
-import { changeFilter } from '../../redux/todolist/actions';
+import { changeFilter } from '../../redux/todolist/slice';
 const Filter = () => {
   const dispatch = useDispatch();
   return (
