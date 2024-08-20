@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCounter, selectStep } from '../../redux/counter/selectors';
-import { changeStep, decrement, increment, reset } from '../../redux/counter/actions';
+import { changeStep, decrement, increment, reset } from '../../redux/counter/slice';
 
 const Counter = () => {
   const counter = useSelector(selectCounter);
