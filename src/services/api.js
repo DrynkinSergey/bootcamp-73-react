@@ -26,3 +26,11 @@ export const fetchRecipeByQuery = async params => {
   });
   return data;
 };
+export const fetchRecipeTags = async params => {
+  const { data } = await axios.get('recipes/tags', {
+    params: {
+      ...params,
+    },
+  });
+  return data;
+};
