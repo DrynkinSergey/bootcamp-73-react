@@ -1,4 +1,10 @@
+import { RecipesList } from '../components/RecipesList';
+
 const Recipes = () => {
-  return <div></div>;
+  return (
+    <div>
+      <RecipesList />
+    </div>
+  );
 };
 export default Recipes;
