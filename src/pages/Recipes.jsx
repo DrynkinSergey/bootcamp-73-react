@@ -31,7 +31,12 @@ const Recipes = () => {
     setSearchParams(searchParams);
   };
   return (
-    <div>
+    <div
+      className='min-h-screen'
+      style={{
+        backgroundImage: 'url(https://t3.ftcdn.net/jpg/02/08/52/58/360_F_208525886_ph0EXbxxueCFT5IXPBDgWfFkIUdkfBaL.jpg)',
+      }}
+    >
       <SearchBar query={query} setQuery={setQuery} tags={tags} />
 
       <RecipesList recipes={recipes} />

@@ -5,7 +5,9 @@ import { MoveLeft } from 'lucide-react';
 import { FaStar, FaRegStar } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToFavorite, removeFromFavorite } from '../redux/favoriteSlice';
-import { selectFavorites } from '../redux/selectors';
+import { selectFavorites, selectIsExist } from '../redux/selectors';
+import ReactImageZoom from 'react-image-zoom';
+import Loader from '../components/Loader';
 
 const RecipeDetails = () => {
   const [recipe, setRecipe] = useState(null);
@@ -14,6 +16,8 @@ const RecipeDetails = () => {
   const goBackRef = useRef(location.state ?? '/recipes');
   const dispatch = useDispatch();
   const favoritesRecipes = useSelector(selectFavorites);
+  // const isExist = useSelector(state => selectIsExist(state, recipe));
+  // If we want use that inside selectors
 
   const isExist = favoritesRecipes.some(item => item?.id === recipe?.id);
 
@@ -21,11 +25,14 @@ const RecipeDetails = () => {
     fetchRecipeById(recipeId).then(data => setRecipe(data));
   }, [recipeId]);
 
+  // const props = { width: 800, zoomPosition: 'bottom', height: 550, zoomWidth: 800, img: recipe?.image };
   if (!recipe) {
-    return <p>Please wait... Your recipe is downloading...</p>;
+    return <Loader />;
   }
+
   return (
     <div className='grid grid-cols-2 p-5 gap-2'>
+      {/* <ReactImageZoom {...props} /> */}
       <img className='rounded-xl h-[80vh] w-full object-cover ' src={recipe.image} />
       <section>
         <Link to={goBackRef.current} className='text-[16px] flex items-center gap-1'>
