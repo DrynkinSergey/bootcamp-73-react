@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { fetchRecipeById } from '../services/api';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { MoveLeft } from 'lucide-react';
 
 const RecipeDetails = () => {
   const [recipe, setRecipe] = useState(null);
   const { recipeId } = useParams();
+  const location = useLocation();
+  const goBackRef = useRef(location.state ?? '/recipes');
 
   useEffect(() => {
     fetchRecipeById(recipeId).then(data => setRecipe(data));
@@ -17,7 +19,7 @@ const RecipeDetails = () => {
     <div className='grid grid-cols-2 p-5 gap-2'>
       <img className='rounded-xl h-[80vh] w-full object-cover ' src={recipe.image} />
       <section>
-        <Link to='/recipes' className='text-[16px] flex items-center gap-1'>
+        <Link to={goBackRef.current} className='text-[16px] flex items-center gap-1'>
           {' '}
           <MoveLeft /> Back
         </Link>

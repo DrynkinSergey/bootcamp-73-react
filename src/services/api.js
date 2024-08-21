@@ -18,3 +18,11 @@ export const fetchRecipeById = async (id, params) => {
   });
   return data;
 };
+export const fetchRecipeByQuery = async params => {
+  const { data } = await axios.get('recipes/search', {
+    params: {
+      ...params,
+    },
+  });
+  return data;
+};
