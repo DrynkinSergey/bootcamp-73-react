@@ -7,6 +7,7 @@ import s from './TodoList.module.css';
 import { useEffect } from 'react';
 import { fetchTodosThunk } from '../../redux/todolist/todosOps';
 import { selectIsError, selectIsLoading } from '../../redux/todolist/selectors';
+import clsx from 'clsx';
 const Todolist = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
@@ -17,14 +18,14 @@ const Todolist = () => {
     dispatch(fetchTodosThunk());
   }, [dispatch]);
   return (
-    <div className={s.wrapperTodolist}>
+    <div className={clsx(s.wrapperTodolist, 'relative')}>
       <section className={s.actionSection}>
         <SearchBar />
         <AddForm />
       </section>
       <Filter />
       <List />
-      {isLoading && <h2>Loading...</h2>}
+      {isLoading && <span className='loading loading-dots loading-lg absolute right-2 top-2'></span>}
       {isError && <h2>Error</h2>}
     </div>
   );

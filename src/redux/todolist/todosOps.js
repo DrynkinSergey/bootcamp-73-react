@@ -12,18 +12,46 @@ export const fetchTodosThunk = createAsyncThunk('fetchAll', async (_, thunkAPI) 
   }
 });
 
-export const deleteTodoThunk = createAsyncThunk('deleteTodo', async (id, thunkAPI) => {
+export const deleteTodoThunk = createAsyncThunk(
+  'deleteTodo',
+  async (id, thunkAPI) => {
+    try {
+      await axios.delete(`todos/${id}`);
+      return id;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+  {
+    condition: (id, thunkAPI) => {
+      const isLoading = thunkAPI.getState().todolist.isLoading;
+      if (isLoading) {
+        return false;
+      }
+    },
+  }
+);
+
+export const addTodoThunk = createAsyncThunk('addTodo', async (body, thunkAPI) => {
   try {
-    await axios.delete(`todos/${id}`);
-    return id;
+    await axios.post('/todos', body);
+    thunkAPI.dispatch(fetchTodosThunk());
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
-export const addTodoThunk = createAsyncThunk('addTodo', async (body, thunkAPI) => {
+export const toggleTodoThunk = createAsyncThunk('toggleTodo', async (body, thunkAPI) => {
   try {
-    const { data } = await axios.post('/todos', body);
+    const { data } = await axios.put(`todos/${body.id}`, { ...body, completed: !body.completed });
+    return data.id;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+export const renameTodoThunk = createAsyncThunk('renameTodo', async (body, thunkAPI) => {
+  try {
+    const { data } = await axios.put(`todos/${body.id}`, body);
     return data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);

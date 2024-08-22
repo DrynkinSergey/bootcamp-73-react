@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { addTodoThunk, deleteTodoThunk, fetchTodosThunk } from './todosOps';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { addTodoThunk, deleteTodoThunk, fetchTodosThunk, renameTodoThunk, toggleTodoThunk } from './todosOps';
 
 const initialState = {
   items: [],
@@ -22,22 +22,41 @@ const slice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(fetchTodosThunk.pending, (state, action) => {
-        state.isLoading = true;
-      })
       .addCase(fetchTodosThunk.fulfilled, (state, action) => {
         state.items = action.payload;
-        state.isLoading = false;
       })
-      .addCase(fetchTodosThunk.rejected, (state, action) => {
-        state.isError = action.payload;
+      .addCase(toggleTodoThunk.fulfilled, (state, action) => {
+        const item = state.items.find(item => item.id === action.payload);
+        item.completed = !item.completed;
+      })
+      .addCase(renameTodoThunk.fulfilled, (state, action) => {
+        state.items = state.items.map(item => (item.id === action.payload.id ? action.payload : item));
       })
       .addCase(deleteTodoThunk.fulfilled, (state, action) => {
         state.items = state.items.filter(item => item.id !== action.payload);
       })
-      .addCase(addTodoThunk.fulfilled, (state, action) => {
-        state.items.push(action.payload);
-      });
+
+      .addMatcher(
+        isAnyOf(renameTodoThunk.rejected, addTodoThunk.rejected, fetchTodosThunk.rejected, deleteTodoThunk.rejected, toggleTodoThunk.rejected),
+        (state, action) => {
+          state.isError = action.payload;
+          state.isLoading = false;
+        }
+      )
+
+      .addMatcher(
+        isAnyOf(renameTodoThunk.pending, addTodoThunk.pending, fetchTodosThunk.pending, deleteTodoThunk.pending, toggleTodoThunk.pending),
+        state => {
+          state.isError = false;
+          state.isLoading = true;
+        }
+      )
+      .addMatcher(
+        isAnyOf(renameTodoThunk.fulfilled, addTodoThunk.fulfilled, fetchTodosThunk.fulfilled, deleteTodoThunk.fulfilled, toggleTodoThunk.fulfilled),
+        state => {
+          state.isLoading = false;
+        }
+      );
   },
 });
 
