@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  items: [{ id: 1, todo: 'Learn Redux', completed: true }],
+  items: [],
   filter: '',
   search: '',
+  isLoading: false,
+  isError: false,
 };
 
 const slice = createSlice({
@@ -22,8 +24,20 @@ const slice = createSlice({
     changeSearch: (state, action) => {
       state.search = action.payload;
     },
+
+    setIsLoading: (state, action) => {
+      state.isLoading = action.payload;
+    },
+    setIsError: (state, action) => {
+      state.isError = action.payload;
+      state.isLoading = false;
+    },
+    fetchingSuccess: (state, action) => {
+      state.items = action.payload;
+      state.isLoading = false;
+    },
   },
 });
 
 export const todoReducer = slice.reducer;
-export const { addTodo, deleteTodo, changeFilter, changeSearch } = slice.actions;
+export const { addTodo, deleteTodo, changeFilter, changeSearch, setIsError, setIsLoading, fetchingSuccess } = slice.actions;
