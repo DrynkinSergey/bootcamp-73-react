@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import s from './TodoList.module.css';
 import { useDispatch } from 'react-redux';
-import { addTodo } from '../../redux/todolist/slice';
 import { nanoid } from '@reduxjs/toolkit';
 import { addTodoThunk } from '../../redux/todolist/todosOps';
 const AddForm = () => {

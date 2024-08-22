@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import Item from './Item';
 import s from './TodoList.module.css';
-import { selectFilter, selectSearch, selectTodos } from '../../redux/todolist/selectors';
+import { selectFilter, selectTodos } from '../../redux/todolist/selectors';
 const List = () => {
   const todos = useSelector(selectTodos);
   const search = useSelector(state => state.todolist.search);
