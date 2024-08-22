@@ -11,6 +11,8 @@ const Todolist = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const isError = useSelector(selectIsError);
+  console.log(isError);
+
   useEffect(() => {
     dispatch(fetchTodosThunk());
   }, [dispatch]);

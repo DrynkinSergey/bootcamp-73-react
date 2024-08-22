@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchTodosThunk } from './todosOps';
 
 const initialState = {
   items: [],
@@ -36,6 +37,19 @@ const slice = createSlice({
       state.items = action.payload;
       state.isLoading = false;
     },
+  },
+  extraReducers: builder => {
+    builder
+      .addCase(fetchTodosThunk.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchTodosThunk.fulfilled, (state, action) => {
+        state.items = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(fetchTodosThunk.rejected, (state, action) => {
+        state.isError = action.payload;
+      });
   },
 });
 
