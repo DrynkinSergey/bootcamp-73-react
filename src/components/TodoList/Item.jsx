@@ -7,7 +7,7 @@ const Item = ({ todo }) => {
   return (
     <li className={s.item}>
       <input onChange={() => dispatch(toggleTodoThunk(todo))} checked={todo.completed} type='checkbox' />
-      <p onClick={() => dispatch(renameTodoThunk({ ...todo, todo: prompt('enter new todo:') }))}>{todo.todo}</p>
+      <p onClick={() => dispatch(renameTodoThunk({ ...todo, todo: prompt('enter new todo:') ?? todo.todo }))}>{todo.todo}</p>
       <button onClick={() => dispatch(deleteTodoThunk(todo.id))}>
         <OctagonX />
       </button>
