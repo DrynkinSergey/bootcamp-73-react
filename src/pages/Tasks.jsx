@@ -1,4 +1,6 @@
+import Todolist from '../components/TodoList/TodoList';
+
 const Tasks = () => {
-  return <div>Tasks</div>;
+  return <Todolist />;
 };
 export default Tasks;
