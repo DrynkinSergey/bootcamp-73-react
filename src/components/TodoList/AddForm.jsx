@@ -8,7 +8,7 @@ const AddForm = () => {
   const [value, setValue] = useState('');
   const handleSubmit = e => {
     e.preventDefault();
-    const newTodo = { id: nanoid(), todo: value, completed: false };
+    const newTodo = { id: nanoid(), text: value, completed: false };
 
     dispatch(addTodoThunk(newTodo));
     setValue('');

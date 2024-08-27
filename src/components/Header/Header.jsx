@@ -22,6 +22,11 @@ const Header = () => {
           </NavLink>
         </li>
         <li>
+          <NavLink className={buildLinkClass} to='/info'>
+            Info
+          </NavLink>
+        </li>
+        <li>
           <NavLink className={buildLinkClass} to='/tasks'>
             Tasks
           </NavLink>

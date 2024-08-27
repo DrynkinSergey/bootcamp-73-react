@@ -1,11 +1,9 @@
-import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
-axios.defaults.baseURL = 'https://66c6dfaa8b2c10445bc80176.mockapi.io/';
+import { goitApi } from '../auth/operations';
 
 export const fetchTodosThunk = createAsyncThunk('fetchAll', async (_, thunkAPI) => {
   try {
-    const { data } = await axios.get('todos');
+    const { data } = await goitApi.get('tasks');
     return data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
@@ -16,7 +14,7 @@ export const deleteTodoThunk = createAsyncThunk(
   'deleteTodo',
   async (id, thunkAPI) => {
     try {
-      await axios.delete(`todos/${id}`);
+      await goitApi.delete(`tasks/${id}`);
       return id;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -34,7 +32,7 @@ export const deleteTodoThunk = createAsyncThunk(
 
 export const addTodoThunk = createAsyncThunk('addTodo', async (body, thunkAPI) => {
   try {
-    await axios.post('/todos', body);
+    await goitApi.post('/tasks', body);
     thunkAPI.dispatch(fetchTodosThunk());
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
@@ -43,7 +41,7 @@ export const addTodoThunk = createAsyncThunk('addTodo', async (body, thunkAPI) =
 
 export const toggleTodoThunk = createAsyncThunk('toggleTodo', async (body, thunkAPI) => {
   try {
-    const { data } = await axios.put(`todos/${body.id}`, { ...body, completed: !body.completed });
+    const { data } = await goitApi.patch(`tasks/${body.id}`, { ...body, completed: !body.completed });
     return data.id;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
@@ -51,7 +49,7 @@ export const toggleTodoThunk = createAsyncThunk('toggleTodo', async (body, thunk
 });
 export const renameTodoThunk = createAsyncThunk('renameTodo', async (body, thunkAPI) => {
   try {
-    const { data } = await axios.put(`todos/${body.id}`, body);
+    const { data } = await goitApi.patch(`tasks/${body.id}`, body);
     return data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);

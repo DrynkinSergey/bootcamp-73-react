@@ -7,7 +7,7 @@ const List = () => {
   const search = useSelector(state => state.todolist.search);
   const filter = useSelector(selectFilter);
 
-  const filteredData = todos.filter(item => item.todo.toLowerCase().includes(search.toLowerCase()));
+  const filteredData = todos.filter(item => item.text.toLowerCase().includes(search.toLowerCase()));
 
   const getSortElements = () => {
     switch (filter) {
