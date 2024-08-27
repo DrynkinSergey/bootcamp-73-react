@@ -5,8 +5,16 @@ import Tasks from './pages/Tasks';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import NotFound from './pages/NotFound';
+import { useDispatch } from 'react-redux';
+import { refreshUserThunk } from './redux/auth/operations';
+import { useEffect } from 'react';
 
 const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(refreshUserThunk());
+  }, [dispatch]);
+
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
