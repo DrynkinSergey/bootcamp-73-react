@@ -5,17 +5,19 @@ import Tasks from './pages/Tasks';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import NotFound from './pages/NotFound';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { refreshUserThunk } from './redux/auth/operations';
 import { useEffect } from 'react';
+import { selectIsRefreshing } from './redux/auth/selectors';
 
 const App = () => {
+  const isRefresh = useSelector(selectIsRefreshing);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(refreshUserThunk());
   }, [dispatch]);
 
-  return (
+  return isRefresh ? null : (
     <Routes>
       <Route path='/' element={<Layout />}>
         <Route index element={<Home />} />
